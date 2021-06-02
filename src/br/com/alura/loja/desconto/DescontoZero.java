@@ -10,7 +10,13 @@ public class DescontoZero extends Desconto{
 		super(null);
 	}
 
-	public BigDecimal calcular(Orcamento orcamento) {
+	@Override
+	public BigDecimal calcula(Orcamento orcamento) {
 		return BigDecimal.ZERO;
+	}
+
+	@Override
+	public Boolean deveAplicar(Orcamento orcamento) {
+		return true;
 	}
 }

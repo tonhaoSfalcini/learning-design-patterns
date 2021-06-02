@@ -10,10 +10,12 @@ public class DescontoOrcamentoValorMaiorQueQuinhentos extends Desconto{
 		super(next);
 	}
 
-	public BigDecimal calcular(Orcamento orcamento) {
-		if(orcamento.getQtdeItens() > 5) {
-			return orcamento.getValor().multiply(new BigDecimal("0.1"));
-		}
-		return next.calcular(orcamento);
+	public BigDecimal calcula(Orcamento orcamento) {
+		return orcamento.getValor().multiply(new BigDecimal("0.1"));
+	}
+
+	@Override
+	public Boolean deveAplicar(Orcamento orcamento) {
+		return orcamento.getQtdeItens() > 5;
 	}
 }

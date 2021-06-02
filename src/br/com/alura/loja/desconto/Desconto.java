@@ -12,5 +12,15 @@ public abstract class Desconto {
 		this.next = next;
 	}
 	
-	public abstract BigDecimal calcular(Orcamento orcamento);
+	public BigDecimal doExecute(Orcamento orcamento) {
+		if(deveAplicar(orcamento)) {
+			return calcula(orcamento);
+		}
+		return next.doExecute(orcamento);
+	}
+	
+
+	public abstract BigDecimal calcula(Orcamento orcamento);
+	
+	public abstract Boolean deveAplicar(Orcamento orcamento);
 }
