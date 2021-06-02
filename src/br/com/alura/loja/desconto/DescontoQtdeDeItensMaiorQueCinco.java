@@ -4,11 +4,16 @@ import java.math.BigDecimal;
 
 import br.com.alura.loja.orcamento.Orcamento;
 
-public class DescontoQtdeDeItensMaiorQueCinco {
+public class DescontoQtdeDeItensMaiorQueCinco extends Desconto{
+
+	public DescontoQtdeDeItensMaiorQueCinco(Desconto next) {
+		super(next);
+	}
+
 	public BigDecimal calcular(Orcamento orcamento) {
 		if(orcamento.getValor().compareTo(new BigDecimal("500")) > 0) {
 			return orcamento.getValor().multiply(new BigDecimal("0.05"));
 		}
-		return BigDecimal.ZERO;
+		return next.calcular(orcamento);
 	}
 }

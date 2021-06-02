@@ -13,7 +13,7 @@ public class TesteImpostos {
 	public static void main(String[] args) {
 		
 		testaImpostos(new BigDecimal("100"), 1);
-		testaDescontos(new BigDecimal("150"), 15);
+		testaDescontos(new BigDecimal("150"), 6);
 		testaDescontos(new BigDecimal("650"), 2);
 		
 	}
