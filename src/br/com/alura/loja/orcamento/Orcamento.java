@@ -2,30 +2,42 @@ package br.com.alura.loja.orcamento;
 
 import java.math.BigDecimal;
 
-import lombok.AllArgsConstructor;
+import br.com.alura.loja.situacao.EmAnalise;
+import br.com.alura.loja.situacao.SituacaoOrcamento;
 import lombok.Data;
 
-@Data @AllArgsConstructor
-public class Orcamento {
+@Data
+public class Orcamento { 
 
 	private BigDecimal valor;
 	private Integer qtdeItens;
-	private String situacao;
+	
+	private SituacaoOrcamento situacao; 
 	
 	
 	public void aplicaDescontoExtra() {
-		if(situacao.equals("ANALISE")) {
-			this.valor = this.valor.subtract(this.valor.multiply(new BigDecimal("0.05")));
-		}else if(situacao.equals("APROVADO")) {
-			this.valor = this.valor.subtract(this.valor.multiply(new BigDecimal("0.02")));
-		}
+		this.situacao.calcularValorDescontoExtra(this);
 	}
 	
 	public void aprovar() {
-		this.situacao = "APROVADO";
+		this.situacao.aprovar(this);
 	}
 
-	public void iniciarAnalise() {
-		this.situacao = "ANALISE";
+	public void emAnalise() {
+		this.situacao.emAnalise(this);
+	}
+
+	public void reprovar() {
+		this.situacao.reprovar(this);
+	}
+
+	public void finalizar() {
+		this.situacao.finalizar(this);
+	}
+
+	public Orcamento(BigDecimal valor, Integer qtdeItens) {
+		this.valor = valor;
+		this.qtdeItens = qtdeItens;
+		this.situacao = new EmAnalise();
 	}
 }

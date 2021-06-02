@@ -15,6 +15,15 @@ public class TesteImpostos {
 		testaImpostos(new BigDecimal("100"), 1);
 		testaDescontos(new BigDecimal("150"), 6);
 		testaDescontos(new BigDecimal("650"), 2);
+		testaDescontoExtra(new BigDecimal("1000"), 5);
+		
+	}
+
+	private static void testaDescontoExtra(BigDecimal valor, Integer qtdeItens) {
+		Orcamento orca = new Orcamento(valor, qtdeItens);
+		orca.aprovar();
+		
+		System.out.println(orca.getSituacao().calcularValorDescontoExtra(orca));
 		
 	}
 
