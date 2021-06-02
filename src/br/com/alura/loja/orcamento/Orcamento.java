@@ -9,4 +9,5 @@ import lombok.Data;
 public class Orcamento {
 
 	private BigDecimal valor;
+	private Integer qtdeItens;
 }
